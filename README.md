@@ -26,3 +26,9 @@ scale back up to 3
 go to github, click index.php, edit, edit echo message at top, commit
 console: show build, show rolling upgrade, click on link, show new message
 ```
+
+### cleanup
+```
+oc delete all -l app=example
+```
+
