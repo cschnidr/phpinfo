@@ -63,7 +63,7 @@ objects:
     - annotations: null
       from:
         kind: DockerImage
-        name: 172.30.1.1:5000/playground/${NAME}:latest
+        name: 172.30.1.1:5000/myproject/${NAME}:latest
       generation: null
       importPolicy: {}
       name: latest
@@ -124,7 +124,7 @@ objects:
           deploymentconfig: ${NAME}
       spec:
         containers:
-        - image: 172.30.1.1:5000/playground/${NAME}@sha256:a2237e1785b9df4f397c0cde87e3543508917899704756f5d1021978931e4f9c
+        - image: 172.30.1.1:5000/myproject/${NAME}@sha256:a2237e1785b9df4f397c0cde87e3543508917899704756f5d1021978931e4f9c
           imagePullPolicy: Always
           name: ${NAME}
           ports:
@@ -154,7 +154,7 @@ objects:
         from:
           kind: ImageStreamTag
           name: ${NAME}:latest
-          namespace: playground
+          namespace: myproject
       type: ImageChange
     - type: ConfigChange
   status:
@@ -175,7 +175,7 @@ objects:
       app: ${NAME}
     name: ${NAME}
   spec:
-    host: ${NAME}-playground.127.0.0.1.nip.io
+    host: ${NAME}-myproject.127.0.0.1.nip.io
     port:
       targetPort: 8080-tcp
     to:
@@ -189,7 +189,7 @@ objects:
       - lastTransitionTime: 2017-11-08T16:21:34Z
         status: "True"
         type: Admitted
-      host: ${NAME}-playground.127.0.0.1.nip.io
+      host: ${NAME}-myproject.127.0.0.1.nip.io
       routerName: router
       wildcardPolicy: None
 - apiVersion: v1
