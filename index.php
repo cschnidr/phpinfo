@@ -1,4 +1,4 @@
 <?php
-echo "Hello ".$_ENV['HOSTNAME']." NetApp BlaBli !\n";
+echo "Hello ".$_ENV['HOSTNAME']." NetApp muäsch ha !\n";
 phpinfo();
 ?>
