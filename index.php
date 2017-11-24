@@ -3,7 +3,7 @@
 <html>
 <head>
   <?php
-    echo "<title> Running on POD ".$_ENV['HOSTNAME']." </title>\n";
+    echo "<h1> Running on POD ".$_ENV['HOSTNAME']." </h1>\n";
    ?>
 </head>
 <img src="/web/thePub_GreyBlue.png"/>
