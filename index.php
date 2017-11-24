@@ -9,8 +9,7 @@
 <img src="/web/thePub_GreyBlue.png"/>
 </html>
 
-/*
+
 <?php
-phpinfo();
+// phpinfo();
 ?>
-*/
