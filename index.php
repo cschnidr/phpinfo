@@ -12,5 +12,5 @@
 
 
 <?php
-phpinfo();
+// phpinfo();
 ?>
