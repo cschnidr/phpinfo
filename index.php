@@ -7,10 +7,10 @@
    ?>
 </head>
 <img src="/web/thePub_GreyBlue.png"/>
-<h1>This is cool!</h1>
+<h1></h1>
 </html>
 
 
 <?php
-// phpinfo();
+phpinfo();
 ?>
