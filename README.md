@@ -106,6 +106,7 @@ Edit the setup/backend.json with the SIM values
 > cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-basic.yaml
 ```
 Add backendType to setup/storage-class-basic.yaml
+
 ```
 > vi setup/storage-class-basic.yaml
        apiVersion: storage.k8s.io/v1
