@@ -2,43 +2,46 @@
 
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simpleness of a source to image process and how an modern application can scale.
 
-### Demo preparation
+# Demo preparation
 
 The suggested installation is running on a notebook. A linux VM and a NetApp ONTAP simulator is required.
----------------------------------
-Prep of Linux VM to run Openshift
----------------------------------
+## Prep of Linux VM to run Openshift
  Linux VM can be downloaded here: http://www.osboxes.org/centos/
  Login with root
- '''
+ ```
  > yum update -y
  > yum install wget -y
  > yum install nfs-utils -y
  > curl -fsSL https://get.docker.com/ | sh
+ ```
  Add insecure flag:
+ ```
  > vi /etc/docker/daemon.json ->
      {
        "insecure-registries" : ["172.30.0.0/16"]
      }
  > systemctl stop firewalld
  > systemctl start docker
- '''
+ ```
  Test if Docker is working
- # docker version
+ ```
+ > docker version
+ ```
  Install the OpenShift console tool:
- # wget https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
-# gunzip openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
-# tar xvf openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar
-# mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
+ ```
+ > wget https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
+> gunzip openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
+> tar xvf openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar
+> mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
+```
 Start the OpenShift Cluster
-# ip addr
-# oc cluster up --public-hostname='192.168.123.180' (IP Address from the ip addr command )
-# oc login -u system:admin
-# oc adm policy add-cluster-role-to-user cluster-admin admin
-
----------------------------------
-Prep of NetApp ONTAP Sim
----------------------------------
+```
+> ip addr
+> oc cluster up --public-hostname='192.168.123.180' (IP Address from the ip addr command )
+> oc login -u system:admin
+> oc adm policy add-cluster-role-to-user cluster-admin admin
+```
+# Prep of NetApp ONTAP Sim
 See: https://mysupport.netapp.com/tools/info/ECMLP2538456I.html?platformID=60730&productID=61970&pcfContentID=ECMLP2538456
 
 The sim can be upgrade with the regular ONTAP image you download from mysupport.netapp.com
