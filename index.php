@@ -7,7 +7,12 @@
    ?>
 </head>
 <img src="/web/thePub_GreyBlue.png"/>
-<h1>this is fun!!!</h1>
+<!--
+Create a persisent volume, mount it to webroot/web and put the referenced image in it!
+## webroot for the PHP7 standard container in Openshift: /opt/app-root/src/
+## referenced image: wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png
+-->
+<h1>Change this for demo!</h1>
 </html>
 
 
