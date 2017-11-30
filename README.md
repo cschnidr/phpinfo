@@ -79,21 +79,20 @@ In short:
 ```
 unsetenv bootarg.init.boot_recovery
 boot_ontap
+```
 
-
-
----------------------------------
-Install Trident in your Linux VM
----------------------------------
+# Install Trident in your Linux VM
 Download the NetApp Trident software:
-# wget https://github.com/NetApp/trident/releases/download/v17.10.0/trident-installer-17.10.0.tar.gz
-# gunzip trident-installer-17.10.0.tar.gz
-# tar xvf trident-installer-17.10.0.tar
-# cd trident-installer
-# cp sample-input/backend-ontap-nas.json setup/backend.json
-               
+```
+> wget https://github.com/NetApp/trident/releases/download/v17.10.0/trident-installer-17.10.0.tar.gz
+> gunzip trident-installer-17.10.0.tar.gz
+> tar xvf trident-installer-17.10.0.tar
+> cd trident-installer
+> cp sample-input/backend-ontap-nas.json setup/backend.json
+```               
 Edit the setup/backend.json with the SIM values
-# vi setup/backend.json ->
+```
+> vi setup/backend.json ->
   {
     "version": 1,
     "storageDriverName": "ontap-nas",
@@ -103,11 +102,12 @@ Edit the setup/backend.json with the SIM values
     "username": "vsadmin",
     "password": "netapp11"
    }            
-   # cp sample-input/pvc-basic.yaml setup/pvc-basic.yaml
-   # cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-basic.yaml
-              
-   Add backendType to setup/storage-class-basic.yaml
-   # vi setup/storage-class-basic.yaml
+> cp sample-input/pvc-basic.yaml setup/pvc-basic.yaml
+> cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-basic.yaml
+```
+Add backendType to setup/storage-class-basic.yaml
+```
+> vi setup/storage-class-basic.yaml
        apiVersion: storage.k8s.io/v1
        kind: StorageClass
        metadata:
@@ -116,31 +116,30 @@ Edit the setup/backend.json with the SIM values
        parameters:
        backendType: "ontap-nas"
 
-# oc new-project trident
-# ./install_trident.sh
-# oc create -f setup/storage-class-basic.yaml
-#./tridentctl create backend -f setup/backend.json
-# oc annotate storageclass/basic storageclass.kubernetes.io/is-default-class=true
-
-
-### demo
-
-```
-Add to project -> show all available builders
-choose php builder, e.g. 7.0
-name example, git https://github.com/cschnidr/phpinfo/, create without options
-// --> only works if github can access your installation... copy webhook url, click on github link, add webhook url to github, choose JSON as format !
-go back to console tab, go to overview, check build log if not ready, back to overview
-show generated URL on top right, click, show running app, back to console
-easy to scale up, scale to 2 and 3 pods, mouse hover on the "starting" pods
-easy to scale down, go back to 1 pod
-add encryption: menu application -> routes -> click on name -> actions -> edit -> show options for ... -> TLS: Edge, Insecure: Redirect
-overview: URL changed to https, click and show green lock in browser URL
-scale back up to 3
-go to github, click index.php, edit, edit echo message at top, commit
-console: show build, show rolling upgrade, click on link, show new message
+> oc new-project trident
+> ./install_trident.sh
+> oc create -f setup/storage-class-basic.yaml
+> ./tridentctl create backend -f setup/backend.json
+> oc annotate storageclass/basic storageclass.kubernetes.io/is-default-class=true
 ```
 
+# Demo (Just hacked notes...)
+
+-Add to project -> show all available builders
+-choose php builder, e.g. 7.0
+-name example, git https://github.com/cschnidr/phpinfo/, create without options
+-Optional: (only works if github can access your installation...) copy webhook url, click on github link, add webhook url to github, choose JSON as format !
+-go back to console tab, go to overview, check build log if not ready, back to overview
+-show generated URL on top right, click, show running app, back to console
+-easy to scale up, scale to 2 and 3 pods, mouse hover on the "starting" pods
+-easy to scale down, go back to 1 pod
+-Optional: add encryption: menu application -> routes -> click on name -> actions -> edit -> show options for ... -> TLS: Edge, Insecure: Redirect
+-overview: URL changed to https, click and show green lock in browser URL
+-scale back up to 3
+-go to github, click index.php, edit, edit echo message at top, commit
+-console: show build, show rolling upgrade, click on link, show new message
+
+## Notes to be incorporated
 Create persistent storage in your app
 Mount it to: /opt/app-root/src/web
 Go to the terminal inside your container and put the pic in the PV:
