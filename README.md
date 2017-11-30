@@ -73,9 +73,9 @@ Issues with the Sim
 In case of hard reset of the VM, your sim might be complain about a defect root volume. Here is how to fix it:
 https://vmstorageguy.wordpress.com/2017/05/05/how-to-ontap-9-1-root-volume-damaged/
 In short:
--reset the Sime
--hit ctrl-c right after POST to get on the firmware prompt
--on the firmware prompt. Enter the following command and reboot:
+- reset the Sim-VM
+- hit ctrl-c right after POST to get on the firmware prompt
+- on the firmware prompt. Enter the following command and reboot:
 ```
 unsetenv bootarg.init.boot_recovery
 boot_ontap
