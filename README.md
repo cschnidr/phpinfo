@@ -128,24 +128,24 @@ Add backendType to setup/storage-class-basic.yaml
 
 # Demo (Just hacked notes...)
 
--Add to project -> show all available builders
--choose php builder, e.g. 7.0
--name example, git https://github.com/cschnidr/phpinfo/, create without options
--Optional: (only works if github can access your installation...) copy webhook url, click on github link, add webhook url to github, choose JSON as format !
--go back to console tab, go to overview, check build log if not ready, back to overview
--show generated URL on top right, click, show running app, back to console
--easy to scale up, scale to 2 and 3 pods, mouse hover on the "starting" pods
--easy to scale down, go back to 1 pod
--Optional: add encryption: menu application -> routes -> click on name -> actions -> edit -> show options for ... -> TLS: Edge, Insecure: Redirect
--overview: URL changed to https, click and show green lock in browser URL
--scale back up to 3
--go to github, click index.php, edit, edit echo message at top, commit
--console: show build, show rolling upgrade, click on link, show new message
+- Add to project -> show all available builders
+- choose php builder, e.g. 7.0
+- name example, git https://github.com/cschnidr/phpinfo/, create without options
+- Optional: (only works if github can access your installation...) copy webhook url, click on github link, add webhook url to github, choose JSON as format !
+- go back to console tab, go to overview, check build log if not ready, back to overview
+- show generated URL on top right, click, show running app, back to console
+- easy to scale up, scale to 2 and 3 pods, mouse hover on the "starting" pods
+- easy to scale down, go back to 1 pod
+- Optional: add encryption: menu application -> routes -> click on name -> actions -> edit -> show options for ... -> TLS: Edge, Insecure: Redirect
+- overview: URL changed to https, click and show green lock in browser URL
+- scale back up to 3
+- go to github, click index.php, edit, edit echo message at top, commit
+- console: show build, show rolling upgrade, click on link, show new message
 
 ## Notes to be incorporated
-Create persistent storage in your app
-Mount it to: /opt/app-root/src/web
-Go to the terminal inside your container and put the pic in the PV:
+- Create persistent storage in your app
+- Mount it to: /opt/app-root/src/web
+- Go to the terminal inside your container and put the pic in the PV:
 wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png
 
 Scale the app, open in different browsers, edit the code in github and redeploy
