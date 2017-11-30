@@ -2,9 +2,7 @@
 
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simpleness of a source to image process and how an modern application can scale.
 
-## Demo walkthrough
-
-### prepare
+### Demo preparation
 
 The suggested installation is running on a notebook. A linux VM and a NetApp ONTAP simulator is required.
 ---------------------------------
@@ -12,17 +10,19 @@ Prep of Linux VM to run Openshift
 ---------------------------------
  Linux VM can be downloaded here: http://www.osboxes.org/centos/
  Login with root
- # yum update -y
- # yum install wget -y
- # yum install nfs-utils -y
- # curl -fsSL https://get.docker.com/ | sh
+ '''
+ > yum update -y
+ > yum install wget -y
+ > yum install nfs-utils -y
+ > curl -fsSL https://get.docker.com/ | sh
  Add insecure flag:
- # vi /etc/docker/daemon.json ->
+ > vi /etc/docker/daemon.json ->
      {
        "insecure-registries" : ["172.30.0.0/16"]
      }
- # systemctl stop firewalld
- # systemctl start docker
+ > systemctl stop firewalld
+ > systemctl start docker
+ '''
  Test if Docker is working
  # docker version
  Install the OpenShift console tool:
