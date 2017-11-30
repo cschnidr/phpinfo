@@ -47,15 +47,18 @@ See: https://mysupport.netapp.com/tools/info/ECMLP2538456I.html?platformID=60730
 The sim can be upgrade with the regular ONTAP image you download from mysupport.netapp.com
 The process to upgrade the sim is:
 The root volume might be to small to host an upgrade:
-# storage aggregate add-disks -aggregate aggr0 -diskcount 2
-# volume size -vserver sim1-01 -volume vol0 +2g
-
-# system image get -package http://172.16.51.1/image.tgz (--> there is a Chrome plugin to run a webserver on your notebook https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en)
-# system image update -package image.tgz
-# system image show
-# system image modify -node sim1-01 image2 -isdefault true
-# Reboot
-
+```
+> storage aggregate add-disks -aggregate aggr0 -diskcount 2
+> volume size -vserver sim1-01 -volume vol0 +2g
+```
+Upgrade procedure
+```
+> system image get -package http://172.16.51.1/image.tgz (--> there is a Chrome plugin to run a webserver on your notebook https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en)
+> system image update -package image.tgz
+> system image show
+> system image modify -node sim1-01 image2 -isdefault true
+> Reboot
+```
 Prep the simulator as following:
 - Add Licenses
 - Create a SVM with NFS protocol v4.0
@@ -65,6 +68,18 @@ Prep the simulator as following:
 --> test a mount in your Linux VM
 If you wanna see the exports (showmount -e) from your Linux VM, enable showmount in your SVM:
 cluster ::> nfs server modify -vserver NFS83 -showmount enabled
+
+Issues with the Sim
+In case of hard reset of the VM, your sim might be complain about a defect root volume. Here is how to fix it:
+https://vmstorageguy.wordpress.com/2017/05/05/how-to-ontap-9-1-root-volume-damaged/
+In short:
+-reset the Sime
+-hit ctrl-c right after POST to get on the firmware prompt
+-on the firmware prompt. Enter the following command and reboot:
+```
+unsetenv bootarg.init.boot_recovery
+boot_ontap
+
 
 
 ---------------------------------
