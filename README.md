@@ -89,8 +89,10 @@ Download the NetApp Trident software:
 > tar xvf trident-installer-17.10.0.tar
 > cd trident-installer
 > cp sample-input/backend-ontap-nas.json setup/backend.json
-```               
+```
+
 Edit the setup/backend.json with the SIM values
+
 ```
 > vi setup/backend.json ->
   {
