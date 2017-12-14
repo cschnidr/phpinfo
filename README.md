@@ -7,6 +7,7 @@ This is a very simple PHP application to showcase Openshift and persistent stora
 The suggested installation is running on a notebook. A linux VM and a NetApp ONTAP simulator is required.
 ## Prep of Linux VM to run Openshift
  Linux VM can be downloaded here: http://www.osboxes.org/centos/
+ Use 3GB of RAM
  Login with root
  ```
  > yum update -y
@@ -34,13 +35,31 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
 > tar xvf openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar
 > mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
 ```
-Start the OpenShift Cluster
+Start the Openshift Cluster (first time)
+If you are going to use this installation more than once, a static IP setup is recommended. The DHCP range of VMware Fusion/Workstation usually starts at 128-254. So you can use any IP below .128 in your IP range.
+For a static and persistent setup (Openshift started with "oc cluster up" is per default non-persistent) use the commands below.
+```
+> ip addr
+> mkdir /opt/openshift
+> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift
+> oc login -u system:admin
+> oc adm policy add-cluster-role-to-user cluster-admin admin
+```
+Restart the Openshift Cluster (with existing configuration)
+```
+> ip addr
+> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift --use-existing-config
+> oc login -u system:admin
+> oc adm policy add-cluster-role-to-user cluster-admin admin
+```
+Alternative: Start the Openshift Cluster without persistent config
 ```
 > ip addr
 > oc cluster up --public-hostname='192.168.123.180' (IP Address from the ip addr command )
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
+
 # Prep of NetApp ONTAP Sim
 See: https://mysupport.netapp.com/tools/info/ECMLP2538456I.html?platformID=60730&productID=61970&pcfContentID=ECMLP2538456
 
