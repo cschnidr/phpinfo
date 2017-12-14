@@ -126,7 +126,7 @@ Edit the setup/backend.json with the SIM values
 > cp sample-input/pvc-basic.yaml setup/pvc-basic.yaml
 > cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-basic.yaml
 ```
-Add backendType to setup/storage-class-basic.yaml
+Add backendType (of your sim) to setup/storage-class-basic.yaml
 
 ```
 > vi setup/storage-class-basic.yaml
@@ -137,7 +137,9 @@ Add backendType to setup/storage-class-basic.yaml
        provisioner: netapp.io/trident
        parameters:
        backendType: "ontap-nas"
-
+```
+Install trident with the prepared config files
+```
 > oc new-project trident
 > ./install_trident.sh
 > oc create -f setup/storage-class-basic.yaml
