@@ -15,7 +15,7 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
  > yum install nfs-utils -y
  > curl -fsSL https://get.docker.com/ | sh
  ```
- Add insecure flag:
+ Add insecure flag for local docker registry:
  ```
  > vi /etc/docker/daemon.json ->
      {
@@ -28,14 +28,14 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
  ```
  > docker version
  ```
- Install the OpenShift console tool:
+ ### Install the OpenShift console tool:
  ```
  > wget https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
 > gunzip openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
 > tar xvf openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar
 > mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
 ```
-Start the Openshift Cluster (first time)
+### Start the Openshift Cluster in a persistent setup (first time)
 If you are going to use this installation more than once, a static IP setup is recommended. The DHCP range of VMware Fusion/Workstation usually starts at 128-254. So you can use any IP below .128 in your IP range.
 For a static and persistent setup (Openshift started with "oc cluster up" is per default non-persistent) use the commands below.
 ```
@@ -45,14 +45,14 @@ For a static and persistent setup (Openshift started with "oc cluster up" is per
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
-Restart the Openshift Cluster (with existing configuration)
+### Restart the Openshift Cluster (with existing configuration)
 ```
 > ip addr
 > oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift --use-existing-config
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
-Alternative: Start the Openshift Cluster without persistent config
+### Alternative: Start the Openshift Cluster without persistent config
 ```
 > ip addr
 > oc cluster up --public-hostname='192.168.123.180' (IP Address from the ip addr command )
