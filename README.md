@@ -36,21 +36,21 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
 > mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
 ```
 ### Start the Openshift Cluster in a persistent setup (first time)
-**there are unsolved issues when deploying a PHP app with the persistent setup - use non-persistent setup instead***
-If you are going to use this installation more than once, a static IP setup is recommended. The DHCP range of VMware Fusion/Workstation usually starts at 128-254. So you can use any IP below .128 in your IP range.
+If you are going to use this installation more than once, a static IP setup is recommended. The DHCP range of VMware Fusion/Workstation usually starts at 128-254. So you can use any IP below .128 in your IP range. VMware is using .2 IP in your range as the default gateway and DNS server forwarder!
 For a static and persistent setup (Openshift started with "oc cluster up" is per default non-persistent) use the commands below.
 ```
 > ip addr
-> mkdir /opt/openshift
-> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift
+> mkdir /opt/openshift/data
+> mkdir /opt/openshift/config
+> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift/data --host-config-dir=/opt/openshift/config
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
 ### Restart the Openshift Cluster (with existing configuration)
-**there are unsolved issues when deploying a PHP app with the persistent setup - use non-persistent setup instead***
+In order to restart (after a reboot) the configured Openshift cluster (see above) use the commands below:
 ```
 > ip addr
-> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift --use-existing-config
+> oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift/data --host-config-dir=/opt/openshift/config --use-existing-config
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
@@ -159,33 +159,18 @@ Install trident with the prepared config files
 - go back to console tab, go to overview, check build log if not ready, back to overview
 - show generated URL on top right, click, show running app, back to console
 - easy to scale up, scale to 2 and 3 pods, mouse hover on the "starting" pods
-- easy to scale down, go back to 1 pod
-- Optional: add encryption: menu application -> routes -> click on name -> actions -> edit -> show options for ... -> TLS: Edge, Insecure: Redirect
-- overview: URL changed to https, click and show green lock in browser URL
-- scale back up to 3
-- go to github, click index.php, edit, edit echo message at top, commit
-- console: show build, show rolling upgrade, click on link, show new message
-
-## Notes to be incorporated
-- Create persistent storage in your app
-- Mount it to: /opt/app-root/src/web
-- Go to the terminal inside your container and put the pic in the PV:
-wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png
-
-Scale the app, open in different browsers, edit the code in github and redeploy
-
-
+- load the your app in three different browsers to see the load-balancing (not showing the picture!)
+- attach persistent storage to your app (click on your app-name, go to configuration tab and scroll to the very bottom --> Add storage
+- use web as a PVC name and use ```/opt/app-root/src/web``` for the mount path in the following screen (that the directory where the volume will be mounted in the container, which is below the web-root of the web server)
+- check System Manager of your ONTAP sim to check for a new volume
+- go to your project overview in Openshift and click on the light blue circle with the pods. Click on one container and then go to the terminal tab. This gives you a terminal inside the relevant container. Change to the web directory.
+- download the pictures into the persistent volume: ```wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png```
+- reload the app in all browsers --> pic appears
+- go to github, click index.php, edit, edit the title tag below the pic and commit
+- go back to Openshift, click on your project and click on the three dots in the grey title bar on the right and choose "start deploy" --> Openshift will then download the new code from Github and will deploy it in new containers. The persistent storage is seemlessly attached to those as well. Thank you Trident :-)
+- after completion, delete the whole project in Openshift. The backend storage will also be deleted by Trident!
 
 ### cleanup
 ```
 oc delete all -l app=example
 ```
-
-# Todo's
--clean up demo script
--Make 'oc cluster up' persistent (e.g. deployment of PHP app is not working with the documented persistent setup above. Go with the non-persistent)
-
-To persist data across restarts, specify a valid host directory in the ```--host-data-dir``` argument when starting your cluster with ```oc cluster up```. As long as the same value is specified every time, the data will be preserved across restarts.
-If a host data directory is not specified, the data directory used by OpenShift is discarded when the container is destroyed.
-
-
