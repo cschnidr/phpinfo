@@ -183,7 +183,7 @@ oc delete all -l app=example
 
 # Todo's
 -clean up demo script
--Make 'oc cluster up' persistent
+-Make 'oc cluster up' persistent (e.g. deployment of PHP app is not working with the documented persistent setup above. Go with the non-persistent)
 
 To persist data across restarts, specify a valid host directory in the ```--host-data-dir``` argument when starting your cluster with ```oc cluster up```. As long as the same value is specified every time, the data will be preserved across restarts.
 If a host data directory is not specified, the data directory used by OpenShift is discarded when the container is destroyed.
