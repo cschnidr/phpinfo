@@ -164,7 +164,7 @@ Install trident with the prepared config files
 - use web as a PVC name and use ```/opt/app-root/src/web``` for the mount path in the following screen (that the directory where the volume will be mounted in the container, which is below the web-root of the web server)
 - check System Manager of your ONTAP sim to check for a new volume
 - go to your project overview in Openshift and click on the light blue circle with the pods. Click on one container and then go to the terminal tab. This gives you a terminal inside the relevant container. Change to the web directory.
-- download the pictures into the persistent volume: ```wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png```
+- download the picture into the persistent volume: ```wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png```
 - reload the app in all browsers --> pic appears
 - go to github, click index.php, edit, edit the title tag below the pic and commit (in order to be able to edit this project you need to clone it into your own Github account)
 - go back to Openshift, click on your project and click on the three dots in the grey title bar on the right and choose "start deploy" --> Openshift will then download the new code from Github and will deploy it in new containers. The persistent storage is seemlessly attached to those as well. Thank you Trident :-)
