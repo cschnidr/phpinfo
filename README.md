@@ -84,7 +84,7 @@ Upgrade procedure
 Prep the simulator as following:
 - Add Licenses
 - Create a SVM with NFS protocol v4.0
-- Set Aggr flag for API access
+- Delegate the volume creation to your SVM ([delegate_volume_creation.png](delegate_volume_creation.png)
 - Adjust Default Export Policy for everyone or your private Network
 - Security style needs to be unix!
 --> test a mount in your Linux VM
