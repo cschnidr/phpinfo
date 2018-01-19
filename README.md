@@ -84,7 +84,8 @@ Upgrade procedure
 Prep the simulator as following:
 - Add Licenses
 - Create a SVM with NFS protocol v4.0
-- Delegate the volume creation to your SVM ([delegate_volume_creation.png](delegate_volume_creation.png)
+- Delegate the volume creation to your SVM
+![alt text](https://github.com/cschnidr/phpinfo/blob/master/delegate-volume-creation.png "Delegation of volume creation to the SVM")
 - Adjust Default Export Policy for everyone or your private Network
 - Security style needs to be unix!
 --> test a mount in your Linux VM
