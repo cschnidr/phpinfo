@@ -12,7 +12,7 @@ Create a persisent volume, mount it to webroot/web and put the referenced image 
 ## webroot for the PHP7 standard container in Openshift: /opt/app-root/src/
 ## referenced image: wget http://netapp.io/wp-content/uploads/2017/03/thePub_GreyBlue.png
 -->
-<h1>Containers love NetApp-Storage</h1>
+<h1>Demo for Novartis</h1>
 </html>
 
 
