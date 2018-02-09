@@ -1,7 +1,9 @@
 # PHP Sample Application
 
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simpleness of a source to image process and how an modern application can scale.
+
 Here is the recorded demo of it:
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mQ2sseKamoQ/0.jpg)](https://youtu.be/mQ2sseKamoQ)
 
 # Demo preparation
