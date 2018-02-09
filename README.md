@@ -2,13 +2,7 @@
 
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simpleness of a source to image process and how an modern application can scale.
 Here is the recorded demo of it:
-<object width="425" height="350">
-  <param name="movie" value="https://youtu.be/mQ2sseKamoQ" />
-  <param name="wmode" value="transparent" />
-  <embed src="http://www.youtube.com/user/wwwLoveWatercom?v=BTRN1YETpyg"
-         type="application/x-shockwave-flash"
-         wmode="transparent" width="425" height="350" />
-</object>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/mQ2sseKamoQ/0.jpg)](https://youtu.be/mQ2sseKamoQ)
 
 # Demo preparation
 
