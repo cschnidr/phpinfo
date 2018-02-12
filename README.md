@@ -26,6 +26,8 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
        "insecure-registries" : ["172.30.0.0/16"]
      }
  > systemctl stop firewalld
+ > systemctl disable firewalld
+ > systemctl enable docker
  > systemctl start docker
  ```
  Test if Docker is working
