@@ -138,13 +138,13 @@ Add backendType (of your sim) to setup/storage-class-basic.yaml
 
 ```
 > vi setup/storage-class-basic.yaml
-       apiVersion: storage.k8s.io/v1
-       kind: StorageClass
-       metadata:
-       name: basic
-       provisioner: netapp.io/trident
-       parameters:
-       backendType: "ontap-nas"
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: basic
+provisioner: netapp.io/trident
+parameters:
+  backendType: "ontap-nas"
 ```
 Install trident with the prepared config files
 ```
