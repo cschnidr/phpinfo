@@ -123,16 +123,16 @@ Download the NetApp Trident software:
 Edit the setup/backend.json with the SIM values
 
 ```
-> vi setup/backend.json ->
-  {
-    "version": 1,
-    "storageDriverName": "ontap-nas",
-    "managementLIF": "172.16.152.20",
-    "dataLIF": "172.16.152.21",
-    "svm": "openshift",
-    "username": "vsadmin",
-    "password": "netapp11"
-   }            
+> vi setup/backend.json
+{
+  "version": 1,
+  "storageDriverName": "ontap-nas",
+  "managementLIF": "172.16.152.20",
+  "dataLIF": "172.16.152.21",
+  "svm": "openshift",
+  "username": "vsadmin",
+  "password": "netapp11"
+ }            
 > cp sample-input/pvc-basic.yaml setup/pvc-basic.yaml
 > cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-basic.yaml
 ```
@@ -165,15 +165,15 @@ Here is the process to add a second storage class with the ONTAP-economy driver:
 Create a new setup/backend-eco.json with the SIM values
 
 ```
-> vi setup/backend-eco.json ->
-  {
-    "version": 1,
-    "storageDriverName": "ontap-nas-economy",
-    "managementLIF": "192.168.128.31",
-    "dataLIF": "192.168.128.30",
-    "svm": "devsvm2",
-    "username": "vsadmin",
-    "password": "netapp11"
+> vi setup/backend-eco.json
+{
+  "version": 1,
+  "storageDriverName": "ontap-nas-economy",
+  "managementLIF": "192.168.128.31",
+  "dataLIF": "192.168.128.30",
+  "svm": "devsvm2",
+  "username": "vsadmin",
+  "password": "netapp11"
 } 
 > cp sample-input/pvc-basic.yaml setup/pvc-eco.yaml
 > cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-eco.yaml
