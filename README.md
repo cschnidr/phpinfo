@@ -157,6 +157,74 @@ Install trident with the prepared config files
 > oc annotate storageclass/basic storageclass.kubernetes.io/is-default-class=true
 ```
 
+# Add a second storage class/backend type
+The volume driver for ONTAP is creating a volume for every PVC. In order to scale a environment over the currenty volume limit of 1000 volumes per node, the nas-economy driver was introduced with Trident 17.10. See the following page for details:
+https://netapp.io/2017/12/01/trident-17-10-available-now/
+
+Here is the process to add a second storage class with the ONTAP-economy driver:
+Create a new setup/backend-eco.json with the SIM values
+
+```
+> vi setup/backend-eco.json ->
+  {
+    "version": 1,
+    "storageDriverName": "ontap-nas-economy",
+    "managementLIF": "192.168.128.31",
+    "dataLIF": "192.168.128.30",
+    "svm": "devsvm2",
+    "username": "vsadmin",
+    "password": "netapp11"
+} 
+> cp sample-input/pvc-basic.yaml setup/pvc-eco.yaml
+> cp sample-input/storage-class-basic-v1.yaml.templ setup/storage-class-eco.yaml
+```
+Change backendType in setup/storage-class-eco.yaml
+
+```
+> vi setup/storage-class-eco.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: eco
+provisioner: netapp.io/trident
+parameters:
+  backendType: "ontap-nas-economy"
+```
+Change backendType in setup/pvc-eco.yaml
+
+```
+> vi setup/pvc-eco.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: eco
+  annotations:
+    volume.beta.kubernetes.io/storage-class: econonmy
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```
+
+Add the additional backend with the prepared config files
+```
+> oc create -f setup/storage-class-eco.yaml
+> ./tridentctl create backend -f setup/eco.json
+```
+
+Check if the additional storage class is created
+```
+> ./tridentctl get backend
++----------------------------+-------------------+--------+---------+
+|            NAME            |  STORAGE DRIVER   | ONLINE | VOLUMES |
++----------------------------+-------------------+--------+---------+
+| ontapnaseco_192.168.128.30 | ontap-nas-economy | true   |       3 |
+| ontapnas_192.168.128.30    | ontap-nas         | true   |       0 |
++----------------------------+-------------------+--------+---------+
+```
+
 # Demo (Just hacked notes...)
 
 - Add to project -> show all available builders
