@@ -35,6 +35,15 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
  > docker version
  ```
  ### Install the OpenShift console tool:
+ #### Working and tested versions:
+ ```
+ Openshift Client Tool 3.6.1 https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
+ along with Trident 17.10 https://github.com/NetApp/trident/releases/download/v17.10.0/trident-installer-17.10.0.tar.gz
+ and/or
+ Openshift Client Tool 3.7.1 https://github.com/openshift/origin/releases/download/v3.7.1/openshift-origin-client-tools-v3.7.1-ab0f056-linux-64bit.tar.gz
+ along with Trident 18.01 https://github.com/NetApp/trident/releases/download/v18.01.0/trident-installer-18.01.0.tar.gz 
+ ```
+ 
  ```
  > wget https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
 > gunzip openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
