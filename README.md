@@ -64,8 +64,6 @@ In order to restart (after a reboot) the configured Openshift cluster (see above
 ```
 > ip addr
 > oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift/data --host-config-dir=/opt/openshift/config --use-existing-config
-> oc login -u system:admin
-> oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
 ### Alternative: Start the Openshift Cluster with non-persistent config
 If you start the Openshift cluster as following, you need to go through the setup (including Trident install) after every reboot of the Linux VM!
