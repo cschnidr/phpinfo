@@ -41,8 +41,7 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
  and/or<br />
  Openshift Client Tool [3.7.1](https://github.com/openshift/origin/releases/download/v3.7.1/openshift-origin-client-tools-v3.7.1-ab0f056-linux-64bit.tar.gz)
  along with Trident [18.01](https://github.com/NetApp/trident/releases/download/v18.01.0/trident-installer-18.01.0.tar.gz)
- and/or
- <br />
+ and/or<br />
  Openshift Client Tool [3.10.0](https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz)
  along with Trident [18.10](https://github.com/NetApp/trident/releases/download/v18.10.0/trident-installer-18.10.0.tar.gz)
  
@@ -78,6 +77,7 @@ In order to restart (after a reboot) the configured Openshift cluster (see above
 ```
 > ip addr
 > oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift/data --host-config-dir=/opt/openshift/config --use-existing-config
+:exclamation: For newer versions use this > oc cluster up --public-hostname='your-static-IP' --base-dir=/opt/openshift
 ```
 ### Alternative: Start the Openshift Cluster with non-persistent config
 If you start the Openshift cluster as following, you need to go through the setup (including Trident install) after every reboot of the Linux VM!
