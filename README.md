@@ -101,7 +101,7 @@ The root volume might be to small to host an upgrade:
 > storage aggregate add-disks -aggregate aggr0 -diskcount 2
 > volume size -vserver sim1-01 -volume vol0 +2g
 ```
-Upgrade procedure
+Upgrade procedure<br />
 :white_check_mark: Starting with 9.4 ONTAP is the image upload and upgrade process is fully supported in the web-GUI.
 ```
 > system image get -package http://172.16.51.1/image.tgz (--> there is a Chrome plugin to run a webserver on your notebook https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en)
