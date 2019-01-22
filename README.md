@@ -1,6 +1,6 @@
 # PHP Sample Application
 
-This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simpleness of a source to image process and how an modern application can scale.
+This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simplicity of a source to image process and how modern application can scale.
 
 Here is the recorded demo of it:
 
@@ -41,12 +41,15 @@ The suggested installation is running on a notebook. A linux VM and a NetApp ONT
  and/or<br />
  Openshift Client Tool [3.7.1](https://github.com/openshift/origin/releases/download/v3.7.1/openshift-origin-client-tools-v3.7.1-ab0f056-linux-64bit.tar.gz)
  along with Trident [18.01](https://github.com/NetApp/trident/releases/download/v18.01.0/trident-installer-18.01.0.tar.gz)
+ and/or
+ <br />
+ Openshift Client Tool [3.10.0](https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz)
+ along with Trident [18.10](https://github.com/NetApp/trident/releases/download/v18.10.0/trident-installer-18.10.0.tar.gz)
  
  ```
- > wget https://github.com/openshift/origin/releases/download/v3.6.1/openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
-> gunzip openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar.gz
-> tar xvf openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit.tar
-> mv openshift-origin-client-tools-v3.6.1-008f2d5-linux-64bit/oc /usr/local/bin
+ > wget https://github.com/openshift/origin/releases/download/v3.10.0/openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz
+> tar xvfz openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit.tar.gz
+> mv openshift-origin-client-tools-v3.10.0-dd10d17-linux-64bit/oc /usr/local/bin
 ```
 ### Start the Openshift Cluster in a persistent setup (first time)
 If you are going to use this installation more than once, a static IP setup is recommended. The DHCP range of VMware Fusion/Workstation usually starts at 128-254. So you can use any IP below .128 in your IP range. VMware is using .2 IP in your range as the default gateway and DNS server forwarder!
@@ -55,7 +58,18 @@ For a static and persistent setup (Openshift started with "oc cluster up" is per
 > ip addr
 > mkdir /opt/openshift/data
 > mkdir /opt/openshift/config
+```
+:exclamation: The syntax of the Openshift-Clienttool changed! With old versions <3.10 use the following syntax. Newer versions see below.
+```
 > oc cluster up --public-hostname='your-static-IP' --host-data-dir=/opt/openshift/data --host-config-dir=/opt/openshift/config
+```
+:exclamation: The syntax of the Openshift-Clienttool changed! Use the following syntax for version 3.10+.
+```
+> oc cluster up --public-hostname='your-static-IP' --base-dir=/opt/openshift
+```
+
+
+```
 > oc login -u system:admin
 > oc adm policy add-cluster-role-to-user cluster-admin admin
 ```
