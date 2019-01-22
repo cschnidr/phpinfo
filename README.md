@@ -81,7 +81,6 @@ In order to restart (after a reboot) the configured Openshift cluster (see above
 :exclamation: For newer versions (3.10+) use this instead:
 ```
 > oc cluster up --public-hostname='your-static-IP' --base-dir=/opt/openshift
-
 ```
 ### Alternative: Start the Openshift Cluster with non-persistent config
 If you start the Openshift cluster as following, you need to go through the setup (including Trident install) after every reboot of the Linux VM!
@@ -103,6 +102,7 @@ The root volume might be to small to host an upgrade:
 > volume size -vserver sim1-01 -volume vol0 +2g
 ```
 Upgrade procedure
+:white_check_mark: Starting with 9.4 ONTAP is the image upload and upgrade process is fully supported in the web-GUI.
 ```
 > system image get -package http://172.16.51.1/image.tgz (--> there is a Chrome plugin to run a webserver on your notebook https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en)
 > system image update -package image.tgz
