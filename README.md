@@ -1,4 +1,4 @@
-# PHP Sample Application
+# Hackathon: Dynamic Storage Provisioner for Kubernets by NetApp
 
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simplicity of a source to image process and how modern application can scale.
 
