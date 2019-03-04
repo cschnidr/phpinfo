@@ -3,7 +3,7 @@
 This is a very simple PHP application to showcase Openshift and persistent storage. I use it to show the speed and simplicity of a source to image process and how modern application can scale.
 
 All details on the K8s plugin:
-[![IMAGE ALT TEXT HERE](bla)](https://netapp.io/persistent-storage-provisioner-for-kubernetes/)
+[https://netapp.io/persistent-storage-provisioner-for-kubernetes/](https://netapp.io/persistent-storage-provisioner-for-kubernetes/) 
 
 Here is the recorded demo of it:
 
